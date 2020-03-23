@@ -82,8 +82,9 @@ icon() {
 			echo $downloading
 			curl -s ${url}/${vid}/${pid}.icns > /tmp/DisplayProductID-${pid}.icns
 			echo $installing
-			mkdir -p /System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-${vid}
-			mv -f /tmp/DisplayProductID-${pid}.icns /System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-${vid}/
+			sudo mount -uw /
+			sudo mkdir -p /System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-${vid}
+			sudo mv -f /tmp/DisplayProductID-${pid}.icns /System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-${vid}/
 			echo $hr
 		else
 			echo $text1$i$text2$name$ntext3
@@ -97,9 +98,9 @@ icon() {
 
 add=$(/usr/bin/curl -s cip.cc|grep -m1 -o "中国")
 if [ x"$add" = x"中国" ];then
-	url="https://coding.net/u/lihaoyun6/p/macOS-Displays-icon/git/raw/master"
+	url="https://raw.githubusercontent.com/bingfoon/macOS-Displays-icon/master"
 else
-	url="https://raw.githubusercontent.com/lihaoyun6/macOS-Displays-icon/master"
+	url="https://raw.githubusercontent.com/bingfoon/macOS-Displays-icon/master"
 fi
 lang=$(osascript -e 'user locale of (get system info)')
 #lang=qqq
